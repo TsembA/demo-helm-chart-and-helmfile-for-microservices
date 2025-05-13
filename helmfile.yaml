@@ -3,7 +3,7 @@ releases:
     chart: charts/redis
     values: 
       - values/redis-values.yaml
-      - appReplicas: "1"
+      - appReplicas: "2"
       - volumeName: "redis-cart-data"
 
   - name: emailservice
