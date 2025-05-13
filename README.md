@@ -155,7 +155,7 @@ helmfile apply
 ```
 or
 ```bash
-hellfile sync
+helmfile sync
 ```
 
 To delete resources:
