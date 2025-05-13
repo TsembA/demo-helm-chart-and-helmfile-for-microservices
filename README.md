@@ -82,3 +82,85 @@ helm uninstall emailservice
 Each is deployed using the same templates with its own config file.
 
 ---
+
+
+# 🧩 Alternative Deployment Option: Using Helmfile
+
+This project also supports deploying all microservices at once using [Helmfile](https://github.com/helmfile/helmfile). Below is an example `helmfile.yaml` configuration:
+
+```yaml
+releases:
+  - name: rediscart
+    chart: charts/redis
+    values:
+      - values/redis-values.yaml
+      - appReplicas: "2"
+      - volumeName: "redis-cart-data"
+
+  - name: emailservice
+    chart: charts/microservice
+    values:
+      - values/email-service-values.yaml
+
+  - name: cartservice
+    chart: charts/microservice
+    values:
+      - values/cart-service-values.yaml
+
+  - name: currencyservice
+    chart: charts/microservice
+    values:
+      - values/currency-service-values.yaml   
+
+  - name: paymentservice
+    chart: charts/microservice
+    values:
+      - values/payment-service-values.yaml
+
+  - name: recommendationservice
+    chart: charts/microservice
+    values:
+      - values/recommendation-service-values.yaml
+
+  - name: productcatalogservice
+    chart: charts/microservice
+    values:
+      - values/productcatalog-service-values.yaml
+
+  - name: shippingservice
+    chart: charts/microservice
+    values:
+      - values/shipping-service-values.yaml
+
+  - name: adservice
+    chart: charts/microservice
+    values:
+      - values/ad-service-values.yaml
+
+  - name: checkoutservice
+    chart: charts/microservice
+    values:
+      - values/checkout-service-values.yaml
+
+  - name: frontendservice
+    chart: charts/microservice
+    values:
+      - values/frontend-values.yaml
+```
+
+Deploy all services with:
+
+```bash
+helmfile apply
+```
+or
+```bash
+hellfile sync
+```
+
+To delete resources:
+```bash
+helmfile destroy
+```
+
+This approach simplifies managing multiple services and their configurations consistently.
