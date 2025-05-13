@@ -20,6 +20,7 @@ containerEnvVars:
   value: "checkoutservice:5050"
 - name: AD_SERVICE_ADDR
   value: "adservice:955"
-
+- name: SHOPPING_ASSISTANT_SERVICE_ADDR
+  value: "shoppingassistantservice:5000"
 servicePort: 80
 serviceType: LoadBalancer
